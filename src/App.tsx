@@ -50,6 +50,10 @@ export function App() {
     setCurrentImage(null);
   };
 
+  const backToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     (async function () {
       try {
@@ -62,59 +66,75 @@ export function App() {
     })();
   }, []);
   return (
-    <main>
-      <h1 className="title">Lai's Gallery</h1>
-      <div className="container">
-        {images.map((image, index) => (
-          <figure key={image.name} className="card">
-            <button onClick={() => onImageClick(image, index)} className="card__button">
-              <img
-                className="card__image"
-                src={image.url}
-                alt=""
-                loading={index > 5 ? 'lazy' : 'eager'}
-              />
-            </button>
-            <figcaption className="card__caption">{formatCaption(image.name)}</figcaption>
-          </figure>
-        ))}
-      </div>
-
-      <div
-        className={`overlay ${currentImage ? '' : 'hidden'}`}
-        ref={overlay}
-        tabIndex={-1}
-        aria-modal="true"
-      >
-        <button
-          onClick={onPreviousImage}
-          aria-label="Previous image"
-          disabled={currentImage?.index === 0}
-          className="overlay__button button--center button--left"
-        >
-          &lt;
-        </button>
-        <img src={currentImage?.url} alt="" className="overlay__image" />
-        <button
-          onClick={onNextImage}
-          aria-label="Next image"
-          disabled={currentImage?.index === images.length - 1}
-          className="overlay__button button--center button--right"
-        >
-          &gt;
-        </button>
-        <button onClick={onCloseImage} className="overlay__button button--right button--bottom">
-          Close
-        </button>
-      </div>
-
-      {error && (
-        <div className="error-message">
-          <img src={dinosaur} alt="" aria-hidden="true" />
-          <p>Uh-oh! Looks like something broke. Give the page a quick refresh!</p>
+    <>
+      <main>
+        <h1 className="title">Lai's Gallery</h1>
+        <div className="container">
+          {images.map((image, index) => (
+            <figure key={image.name} className="card">
+              <button onClick={() => onImageClick(image, index)} className="card__button">
+                <img
+                  className="card__image"
+                  src={image.url}
+                  alt=""
+                  loading={index > 5 ? 'lazy' : 'eager'}
+                />
+              </button>
+              <figcaption className="card__caption">{formatCaption(image.name)}</figcaption>
+            </figure>
+          ))}
         </div>
-      )}
-    </main>
+
+        <div
+          className={`overlay ${currentImage ? '' : 'hidden'}`}
+          ref={overlay}
+          tabIndex={-1}
+          aria-modal="true"
+        >
+          <button
+            onClick={onPreviousImage}
+            aria-label="Previous image"
+            disabled={currentImage?.index === 0}
+            className="overlay__button button--center button--left"
+          >
+            &lt;
+          </button>
+          <img src={currentImage?.url} alt="" className="overlay__image" />
+          <button
+            onClick={onNextImage}
+            aria-label="Next image"
+            disabled={currentImage?.index === images.length - 1}
+            className="overlay__button button--center button--right"
+          >
+            &gt;
+          </button>
+          <button onClick={onCloseImage} className="overlay__button button--right button--bottom">
+            Close
+          </button>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            <img src={dinosaur} alt="" aria-hidden="true" />
+            <p>Uh-oh! Looks like something broke. Give the page a quick refresh!</p>
+          </div>
+        )}
+      </main>
+      <footer className="footer">
+        <a
+          href="https://github.com/laianesuzart"
+          className="footer__link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          github.com
+        </a>
+
+        <button onClick={backToTop} aria-label="Go back to top" className="footer__button">
+          &#8593;
+        </button>
+      </footer>
+    </>
   );
 }
 
