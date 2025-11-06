@@ -76,7 +76,7 @@ export function App() {
     <>
       <div
         ref={animationContainer}
-        className="sakura"
+        className={`sakura ${error ? 'hidden' : ''}`}
         aria-hidden="true"
         onClick={pauseAnimation}
       ></div>
@@ -133,20 +133,22 @@ export function App() {
           </div>
         )}
       </main>
-      <footer className="footer content-layer">
-        <a
-          href="https://github.com/laianesuzart"
-          className="footer__link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          github.com
-        </a>
+      {!error && (
+        <footer className="footer content-layer">
+          <a
+            href="https://github.com/laianesuzart"
+            className="footer__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com
+          </a>
 
-        <button onClick={backToTop} aria-label="Go back to top" className="footer__button">
-          &#8593;
-        </button>
-      </footer>
+          <button onClick={backToTop} aria-label="Go back to top" className="footer__button">
+            &#8593;
+          </button>
+        </footer>
+      )}
     </>
   );
 }
