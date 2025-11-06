@@ -12,6 +12,11 @@
   color: rgba(34, 29, 29, 0.87);
 }
 
+.content-layer {
+  position: relative;
+  z-index: 2;
+}
+
 .title {
   font-family: 'Honk', system-ui;
   font-optical-sizing: auto;
@@ -19,8 +24,8 @@
   font-style: normal;
   font-variation-settings: 'MORF' 15, 'SHLN' 50;
   font-size: clamp(2rem, 6vw, 4rem);
-  text-align: center;
-  margin-block: 1rem;
+  margin: 1rem auto;
+  width: fit-content;
 }
 
 .container {
@@ -136,6 +141,7 @@
   padding: 48px 16px 32px;
   position: relative;
   text-align: center;
+  background-color: rgb(255, 237, 228, 0.6);
 }
 
 .footer__link {
@@ -170,10 +176,28 @@
   box-shadow: 0 0 2px 2px rgba(255, 105, 180, 0.829);
 }
 
+.sakura {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' font-size='24'><text y='20'>🌸</text></svg>");
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.paused-animation {
+  animation-play-state: paused !important;
+  -o-animation-play-state: paused !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     background-color: #3d3d3d;
     color: rgba(255, 255, 255, 0.87);
+  }
+  .footer {
+    background-color: rgb(61, 61, 61, 0.6);
   }
 }
 
@@ -189,5 +213,39 @@
   }
   .footer__button {
     transition: box-shadow 300ms ease-in-out;
+  }
+
+  @keyframes fall {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 0 500px;
+    }
+    100% {
+      background-position: 0 1000px;
+    }
+  }
+  @keyframes drift {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 800px;
+    }
+  }
+
+  .sakura {
+    animation: fall 40s linear infinite;
+  }
+
+  .sakura::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' font-size='20'><text y='18'>🌸</text></svg>");
+    background-repeat: repeat;
+    background-size: 40px 40px;
+    opacity: 0.4;
   }
 }

@@ -19,6 +19,7 @@ export function App() {
   const [error, setError] = useState(false);
 
   const overlay = useRef<HTMLDivElement | null>(null);
+  const animationContainer = useRef<HTMLDivElement | null>(null);
 
   const onImageClick = (image: Image, index: number) => {
     setCurrentImage({ ...image, index });
@@ -54,6 +55,12 @@ export function App() {
     window.scrollTo(0, 0);
   };
 
+  const pauseAnimation = () => {
+    if (animationContainer.current) {
+      animationContainer.current.classList.toggle('paused-animation');
+    }
+  };
+
   useEffect(() => {
     (async function () {
       try {
@@ -67,11 +74,17 @@ export function App() {
   }, []);
   return (
     <>
+      <div
+        ref={animationContainer}
+        className="sakura"
+        aria-hidden="true"
+        onClick={pauseAnimation}
+      ></div>
       <main>
-        <h1 className="title">Lai's Gallery</h1>
+        <h1 className="title content-layer">Lai's Gallery</h1>
         <div className="container">
           {images.map((image, index) => (
-            <figure key={image.name} className="card">
+            <figure key={image.name} className="card content-layer">
               <button onClick={() => onImageClick(image, index)} className="card__button">
                 <img
                   className="card__image"
@@ -120,7 +133,7 @@ export function App() {
           </div>
         )}
       </main>
-      <footer className="footer">
+      <footer className="footer content-layer">
         <a
           href="https://github.com/laianesuzart"
           className="footer__link"
