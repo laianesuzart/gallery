@@ -23,9 +23,124 @@
   margin-block: 1rem;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 16px;
+  width: 1600px;
+  max-width: calc(100vw - 24px * 2);
+  margin-inline: auto;
+}
+
+.card {
+  background-color: #fff;
+  border: 8px solid #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card__button {
+  background-color: transparent;
+  border: none;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.card__button:focus {
+  outline-color: palevioletred;
+  outline-offset: 4px;
+}
+
+.card__image {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.card__caption {
+  background-color: #fff;
+  text-align: right;
+  padding-inline-end: 2px;
+  font-family: 'Caveat', cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.5rem;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  padding: 2rem;
+  background-color: #211e1eeb;
+  z-index: 10;
+}
+
+.overlay__image {
+  max-width: 100%;
+  aspect-ratio: 16 /9;
+  object-fit: contain;
+}
+
+.overlay__button {
+  position: absolute;
+  background-color: #ffdede;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 200px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Caveat', cursive;
+}
+
+.overlay__button:not(:disabled) {
+  cursor: pointer;
+}
+
+.overlay__button:not(:disabled):hover,
+.overlay__button:not(:disabled):focus {
+  border-color: deeppink;
+}
+
+.button--center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.button--left {
+  left: clamp(16px, 2vw, 32px);
+}
+
+.button--right {
+  right: clamp(16px, 2vw, 32px);
+}
+
+.button--bottom {
+  bottom: clamp(16px, 2vw, 32px);
+}
+
+.error-message {
+  padding: 32px;
+  width: fit-content;
+  margin-inline: auto;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     background-color: #3d3d3d;
     color: rgba(255, 255, 255, 0.87);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .overlay__button {
+    transition: border 300ms ease-in-out;
   }
 }
