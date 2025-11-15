@@ -80,7 +80,7 @@ export function App() {
         aria-hidden="true"
         onClick={pauseAnimation}
       ></div>
-      <main>
+      <main className="page-container">
         <h1 className="title content-layer">Lai's Gallery</h1>
         <div className="container">
           {images.map((image, index) => (
@@ -133,22 +133,23 @@ export function App() {
           </div>
         )}
       </main>
-      {!error && (
-        <footer className="footer content-layer">
-          <a
-            href="https://github.com/laianesuzart"
-            className="footer__link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github.com
-          </a>
 
+      <footer className="footer content-layer">
+        <a
+          href="https://github.com/laianesuzart"
+          className="footer__link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          github.com
+        </a>
+
+        {!error && (
           <button onClick={backToTop} aria-label="Go back to top" className="footer__button">
             &#8593;
           </button>
-        </footer>
-      )}
+        )}
+      </footer>
     </>
   );
 }
