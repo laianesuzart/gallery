@@ -100,8 +100,6 @@
 
 .overlay__button {
   position: absolute;
-  color: #221d1dde;
-  background-color: #ffdede;
   padding: 8px 16px;
   border: 1px solid transparent;
   outline: none;
@@ -113,6 +111,8 @@
 
 .overlay__button:not(:disabled) {
   cursor: pointer;
+  color: #221d1dde;
+  background-color: #ffdede;
 }
 
 .overlay__button:not(:disabled):hover,
