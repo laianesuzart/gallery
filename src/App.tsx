@@ -63,11 +63,11 @@ export function App() {
 
   useEffect(() => {
     (async function () {
-      try {
-        const res = await fetch('/api/images');
+      const res = await fetch('/api/images');
+      if (res.ok) {
         const fetchedImages = await res.json();
         setImages(fetchedImages);
-      } catch {
+      } else {
         setError(true);
       }
     })();

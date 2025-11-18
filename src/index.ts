@@ -12,7 +12,7 @@ const server = serve({
           const images = await res.json();
           return Response.json(images, { headers: { 'Cache-control': 'max-age=80000' } });
         }
-        return Response.json({ message: 'Error while fetching images', status: res.status });
+        return Response.json({ message: 'Error while fetching images' }, { status: res.status });
       },
     },
   },
